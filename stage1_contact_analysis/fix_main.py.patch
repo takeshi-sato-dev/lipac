@@ -1,0 +1,97 @@
+--- a/main.py
++++ b/main.py
+@@ -280,8 +280,89 @@
+     if not processed_frames:
+         print("No results collected. Analysis failed.")
+         return None, None
++    
++    # Aggregate data across frames for complementarity analysis
++    print("\n----- Aggregating Data Across Frames -----")
++    
++    # Aggregate protein-protein contacts
++    aggregated_protein_contacts = {}
++    for frame_idx, frame_contacts in all_protein_contacts.items():
++        for pair_name, contact_data in frame_contacts.items():
++            if pair_name not in aggregated_protein_contacts:
++                aggregated_protein_contacts[pair_name] = {
++                    'protein1': [],
++                    'protein2': [],
++                    'residue_ids1': None,
++                    'residue_ids2': None,
++                    'min_distances1': [],
++                    'min_distances2': []
++                }
++            
++            # Accumulate contact arrays
++            if 'protein1' in contact_data:
++                aggregated_protein_contacts[pair_name]['protein1'].append(contact_data['protein1'])
++            if 'protein2' in contact_data:
++                aggregated_protein_contacts[pair_name]['protein2'].append(contact_data['protein2'])
++            
++            # Store residue IDs (should be same across frames)
++            if aggregated_protein_contacts[pair_name]['residue_ids1'] is None and 'residue_ids1' in contact_data:
++                aggregated_protein_contacts[pair_name]['residue_ids1'] = contact_data['residue_ids1']
++            if aggregated_protein_contacts[pair_name]['residue_ids2'] is None and 'residue_ids2' in contact_data:
++                aggregated_protein_contacts[pair_name]['residue_ids2'] = contact_data['residue_ids2']
++            
++            # Accumulate min distances
++            if 'min_distances1' in contact_data:
++                aggregated_protein_contacts[pair_name]['min_distances1'].append(contact_data['min_distances1'])
++            if 'min_distances2' in contact_data:
++                aggregated_protein_contacts[pair_name]['min_distances2'].append(contact_data['min_distances2'])
++    
++    # Average the accumulated data
++    import numpy as np
++    for pair_name in aggregated_protein_contacts:
++        if aggregated_protein_contacts[pair_name]['protein1']:
++            aggregated_protein_contacts[pair_name]['protein1'] = np.mean(
++                aggregated_protein_contacts[pair_name]['protein1'], axis=0
++            )
++        if aggregated_protein_contacts[pair_name]['protein2']:
++            aggregated_protein_contacts[pair_name]['protein2'] = np.mean(
++                aggregated_protein_contacts[pair_name]['protein2'], axis=0
++            )
++        if aggregated_protein_contacts[pair_name]['min_distances1']:
++            aggregated_protein_contacts[pair_name]['min_distances1'] = np.mean(
++                aggregated_protein_contacts[pair_name]['min_distances1'], axis=0
++            )
++        if aggregated_protein_contacts[pair_name]['min_distances2']:
++            aggregated_protein_contacts[pair_name]['min_distances2'] = np.mean(
++                aggregated_protein_contacts[pair_name]['min_distances2'], axis=0
++            )
++    
++    # Aggregate lipid-protein contacts and restructure
++    aggregated_lipid_contacts = {}
++    for frame_idx, frame_lipid_contacts in all_lipid_contacts.items():
++        for protein_name, protein_lipid_data in frame_lipid_contacts.items():
++            for lipid_type, contact_data in protein_lipid_data.items():
++                # Initialize structure: lipid_type -> protein_name
++                if lipid_type not in aggregated_lipid_contacts:
++                    aggregated_lipid_contacts[lipid_type] = {}
++                if protein_name not in aggregated_lipid_contacts[lipid_type]:
++                    aggregated_lipid_contacts[lipid_type][protein_name] = {
++                        'contacts': [],
++                        'residue_ids': None
++                    }
++                
++                # Accumulate contacts
++                if 'contacts' in contact_data:
++                    aggregated_lipid_contacts[lipid_type][protein_name]['contacts'].append(contact_data['contacts'])
++                
++                # Store residue IDs (should be same across frames)
++                if aggregated_lipid_contacts[lipid_type][protein_name]['residue_ids'] is None and 'residue_ids' in contact_data:
++                    aggregated_lipid_contacts[lipid_type][protein_name]['residue_ids'] = contact_data['residue_ids']
++    
++    # Average the lipid contacts
++    for lipid_type in aggregated_lipid_contacts:
++        for protein_name in aggregated_lipid_contacts[lipid_type]:
++            if aggregated_lipid_contacts[lipid_type][protein_name]['contacts']:
++                aggregated_lipid_contacts[lipid_type][protein_name]['contacts'] = np.mean(
++                    aggregated_lipid_contacts[lipid_type][protein_name]['contacts'], axis=0
++                )
+     
+     # Save final results
+-    complementarity_df = analyze_contact_complementarity(all_protein_contacts, all_lipid_contacts)
++    complementarity_df = analyze_contact_complementarity(aggregated_protein_contacts, aggregated_lipid_contacts)
+     
+     if complementarity_df is not None:
