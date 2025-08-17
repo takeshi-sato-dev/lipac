@@ -24,7 +24,7 @@ pip install lipac
 
 ### From source
 ```bash
-git clone https://github.com/yourusername/lipac.git
+git clone https://github.com/takeshi-sato-dev/LIPAC.git
 cd lipac
 pip install -e .
 ```
