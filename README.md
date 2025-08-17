@@ -160,7 +160,7 @@ LIPAC is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-This work was supported by JSPS KAKENHI Grant Number [XXXXXXX].
+We acknowledge contributions and support from Kyoto Pharmaceutical University Fund for the Promotion of Collaborative Research. This work was partially supported by JSPS KAKENHI Grant Number 21K06038.
 
 ## Related Projects
 
