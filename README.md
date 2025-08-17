@@ -154,8 +154,8 @@ LIPAC is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/lipac/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/lipac/discussions)
+- **Issues**: [GitHub Issues](https://github.com/takeshi-sato-dev/lipac/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/takeshi-sato-dev/lipac/discussions)
 - **Email**: takeshi.sato@example.com
 
 ## Acknowledgments

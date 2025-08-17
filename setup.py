@@ -14,7 +14,7 @@ setup(
     description="Lipid-Protein Analysis with Causal Inference for MD simulations",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/lipac",
+    url="https://github.com/takeshi-sato-dev/lipac",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

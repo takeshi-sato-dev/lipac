@@ -52,7 +52,7 @@ We welcome contributions to LIPAC! This document provides guidelines for contrib
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/lipac.git
+git clone https://github.com/takeshi-sato-dev/lipac.git
 cd lipac
 ```
 
