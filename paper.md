@@ -104,6 +104,12 @@ LIPAC has been benchmarked on systems ranging from single transmembrane helices 
 - ~100 frames/minute for causal inference
 - Linear scaling with number of proteins and lipid types
 
+# Software and Data Availability
+
+**Software**: The LIPAC package is available on GitHub at https://github.com/takeshi-sato-dev/LIPAC and archived on Zenodo: https://doi.org/10.5281/zenodo.16891334
+
+**Test Data**: Complete test datasets including MD simulation trajectories are available on Zenodo: https://doi.org/10.5281/zenodo.16891479
+
 # Acknowledgements
 
 We acknowledge contributions and support from Kyoto Pharmaceutical University Fund for the Promotion of Collaborative Research. This work was partially supported by JSPS KAKENHI Grant Number 21K06038.
