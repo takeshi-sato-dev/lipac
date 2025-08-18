@@ -1,6 +1,6 @@
 # LIPAC: Lipid-Protein Analysis with Causal Inference
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16891334.svg)](https://doi.org/10.5281/zenodo.16891334)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.XXXXX/status.svg)](https://doi.org/10.21105/joss.XXXXX)
@@ -122,10 +122,10 @@ Full documentation is available at [https://lipac.readthedocs.io](https://lipac.
 
 Example trajectories and analysis scripts are available in the `examples/` directory:
 - `examples/simple_membrane/`: Single protein in POPC membrane
-- `examples/complex_membrane/`: EGFR in complex lipid membrane with GM3
+- `examples/complex_membrane/`: Transmembrane peptide in complex lipid membrane with GM3
 - `examples/benchmark/`: Performance benchmark scripts
 
-**Test Data**: Complete test datasets including MD trajectories and expected outputs are available on Zenodo: [DOI will be added upon publication]
+**Test Data**: Complete test datasets including MD trajectories and expected outputs are available on Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16891479.svg)](https://doi.org/10.5281/zenodo.16891479)
 
 ## Citation
 
